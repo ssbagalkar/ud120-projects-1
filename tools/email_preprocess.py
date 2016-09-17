@@ -16,7 +16,7 @@ def preprocess(words_file = "../tools/word_data.pkl", authors_file="../tools/ema
         and the corresponding authors (by default email_authors.pkl) and performs
         a number of preprocessing steps:
             -- splits into training/testing sets (10% testing)
-            -- vectorizes into tfidf matrix
+            -- vectorizes into tfidf matrixq
             -- selects/keeps most helpful features
 
         after this, the feaures and labels are put into numpy arrays, which play nice with sklearn functions
@@ -34,7 +34,7 @@ def preprocess(words_file = "../tools/word_data.pkl", authors_file="../tools/ema
     authors_file_handler.close()
 
     words_file_handler = open(words_file, "r")
-    word_data = cPickle.load(words_file_handler)
+    word_data = pickle.load(words_file_handler)
     words_file_handler.close()
 
     ### test_size is the percentage of events assigned to the test set
@@ -59,7 +59,7 @@ def preprocess(words_file = "../tools/word_data.pkl", authors_file="../tools/ema
     features_test_transformed  = selector.transform(features_test_transformed).toarray()
 
     ### info on the data
-    print ("no. of Chris training emails:", sum(labels_train))
-    print ("no. of Sara training emails:", len(labels_train)-sum(labels_train))
+    print "no. of Chris training emails:", sum(labels_train)
+    print "no. of Sara training emails:", len(labels_train)-sum(labels_train)
     
     return features_train_transformed, features_test_transformed, labels_train, labels_test
